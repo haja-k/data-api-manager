@@ -1,0 +1,45 @@
+version: "3.7"
+
+networks:
+  ds-net:
+    name: ds-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
+
+volumes:
+  node_modules:
+
+services:
+  ds:
+    image: ds_api_manager:dev_1
+    container_name: ds_api_manager
+    build:
+      context: ./
+      # target: dev
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules/
+    tty: true
+    command: npm run start:dev
+    ports:
+      - "3003:3000"
+    networks:
+      - ds-net
+    environment:
+      NODE_ENV: dev
+      DEBUG: api-manager:*
+      # DEBUG: false
+      APP_URL: http://localhost
+      PORT: 3000
+      DB_HOST: host.docker.internal
+      DB_PORT: 3306
+      DB_NAME: ds_api_manager_dev
+      DB_USER: root
+      DB_PASS:
+      BASE_URL_RETRAIN_SUBMIT: http://host.docker.internal:8000/api/section12/models/retrain/submit
+      BASE_URL_RETRAIN_DDA12: http://host.docker.internal:8000/api/section12/models/retrain
+      BASE_URL_RETRAIN_PC380: http://host.docker.internal:8000/api/section380/models/retrain
+      BASE_URL_DDA12: http://host.docker.internal:8000/api/section12/predict

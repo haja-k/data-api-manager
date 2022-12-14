@@ -1,0 +1,26 @@
+{
+  "use_env_variable": false,
+  "dev": {
+    "username": "root",
+    "password": "",
+    "database": "",
+    "host": "",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "local": {
+    "username": "root",
+    "password": null,
+    "database": "ds_api_manager_dev",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "ds_api_manager",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

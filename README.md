@@ -1,5 +1,7 @@
-# data-sentencing-api-manager  ☄️
-api manager that becomes the medium for frontend to communicate with machine learning API
+# API Manager  ☄️
+api manager that becomes the medium for frontend to communicate with machine learning (ML) API
+- acts as the database connector, for its ML counterparts to store or retrieve useful data
+- some parts are hidden due to signed NDA. 
 
 ## Pre-Requisites
 
@@ -13,6 +15,7 @@ api manager that becomes the medium for frontend to communicate with machine lea
 ```
 npm i
 ```
+3. Create an environment files (.env), to store global variables
 
 2. Run the server
 

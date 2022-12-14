@@ -1,0 +1,1064 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "API Health Check"
+        ],
+        "description": "Check if API is running",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/list": {
+      "get": {
+        "tags": [
+          "Model Profiles"
+        ],
+        "description": "List models by section",
+        "parameters": [
+          {
+            "name": "section_id",
+            "in": "query",
+            "type": "string",
+            "description": "Section ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/detail": {
+      "get": {
+        "tags": [
+          "Model Profiles"
+        ],
+        "description": "Get details of a model version by their ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": "Model Profile ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/get-status": {
+      "get": {
+        "tags": [
+          "Model Profiles"
+        ],
+        "description": "Get status of a model by their ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": "Model Profile ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/dda12/get-active": {
+      "get": {
+        "tags": [
+          "Back-End Usage Only"
+        ],
+        "description": "Get an active model for DDA12",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/pc380/get-active": {
+      "get": {
+        "tags": [
+          "Back-End Usage Only"
+        ],
+        "description": "Get an active model for PC380",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/get-active-model-list": {
+      "get": {
+        "tags": [
+          "Model Profiles"
+        ],
+        "description": "Get active models for all sections",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/set-active": {
+      "post": {
+        "tags": [
+          "Model Profiles"
+        ],
+        "description": "Set a model to active using their ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": "Model Profile ID",
+            "required": true
+          },
+          {
+            "name": "section_id",
+            "in": "query",
+            "type": "string",
+            "description": "Section ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/feature-list": {
+      "get": {
+        "tags": [
+          "Back-End Usage Only"
+        ],
+        "description": "List all features used for training by section",
+        "parameters": [
+          {
+            "name": "section_id",
+            "in": "query",
+            "type": "string",
+            "description": "Section ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/add-feature-list": {
+      "post": {
+        "tags": [
+          "Back-End Usage Only"
+        ],
+        "description": "Add a feature for training by section",
+        "parameters": [
+          {
+            "name": "section_id",
+            "in": "query",
+            "type": "string",
+            "description": "Section ID",
+            "required": true
+          },
+          {
+            "name": "feature_name",
+            "in": "query",
+            "type": "string",
+            "description": "New feature name",
+            "required": true
+          },
+          {
+            "name": "feature_type",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "cat_input_features",
+              "num_input_features",
+              "target_features",
+              "extra_features"
+            ],
+            "description": "New feature type",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/delete-feature-list": {
+      "put": {
+        "tags": [
+          "Back-End Usage Only"
+        ],
+        "description": "Delete a feature from training features list",
+        "parameters": [
+          {
+            "name": "feature_id",
+            "in": "query",
+            "type": "string",
+            "description": "Feature ID",
+            "required": true
+          },
+          {
+            "name": "section_id",
+            "in": "query",
+            "type": "string",
+            "description": "Section ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/retrain/dda12/data": {
+      "post": {
+        "tags": [
+          "AI Retraining"
+        ],
+        "description": "Send data for DDA12 model self learning",
+        "parameters": [
+          {
+            "name": "use_immediately",
+            "required": true,
+            "type": "boolean",
+            "in": "query"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "drug_type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_nationality": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_gender": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "sch_accused_plead_guilty": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_imprisonment_effective_on": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_repeated_offence": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "state": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "weight_of_drug": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "pd_age": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "ds_fine": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_fine_prison_by_days": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_imprisonment_by_days": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_chk_fine": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_chk_imprisonment": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_chk_bond": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "cas_case_no": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "sch_date": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "sentence_type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "freq_last_1_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_2_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_3_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_4_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_5_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_6_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "rampancy_last_1_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "rampancy_last_2_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "rampancy_last_3_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "rampancy_last_4_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "rampancy_last_5_month": {
+                    "type": "number",
+                    "example": 0
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/retrain/pc380/data": {
+      "post": {
+        "tags": [
+          "AI Retraining"
+        ],
+        "description": "Send data for PC380 model self learning",
+        "parameters": [
+          {
+            "name": "use_immediately",
+            "required": true,
+            "type": "boolean",
+            "in": "query"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "sch_date": {
+                    "type": "string",
+                    "example": "datetime"
+                  },
+                  "cas_case_no": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "condition_of_item": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "cooperation_with_the_enforcement_officers": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "is_item_recovered": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "is_there_appeal": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "is_under_remand": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "state": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_employment_status": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_nationality": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "use_of_violence": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "previous_conviction_records": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "previous_conviction_same_offence": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "relationship_with_victim": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "restitution_of_item": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_marital_status": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "sch_accused_found_guilty_after_ft": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "sch_accused_plead_guilty": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "monthly_income_range_group": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "is_public_interest": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "is_there_any_injury": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "pd_gender": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "age_range": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "number_of_dependants": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "pd_age": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "value_of_items": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "number_of_convictions": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "gap_from_previous_conviction_by_month": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "freq_last_1_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_2_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_3_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_4_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_5_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "freq_last_6_month": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "sentence_type_pc380": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_fine": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_fine_prison_by_days": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_imprisonment_by_days": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_whipping": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "ds_bond_amt": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ds/models/retrain/submit-result": {
+      "post": {
+        "tags": [
+          "Back-End Usage Only"
+        ],
+        "description": "Send training result into the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/dda12/predict": {
+      "post": {
+        "tags": [
+          "Inferencing"
+        ],
+        "description": "Inferencing for DDA12",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "drug_type": {
+                  "type": "string",
+                  "example": "methamphetamine"
+                },
+                "is_citizen": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "pd_gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "sch_accused_plead_guilty": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "pd_repeated_offence": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "state": {
+                  "type": "string",
+                  "example": "sarawak"
+                },
+                "weight_of_drug": {
+                  "type": "number",
+                  "example": 0.25
+                },
+                "pd_age": {
+                  "type": "number",
+                  "example": 25
+                },
+                "last_1_month_freq": {
+                  "type": "number",
+                  "example": 38
+                },
+                "last_2_month_freq": {
+                  "type": "number",
+                  "example": 74
+                },
+                "last_3_month_freq": {
+                  "type": "number",
+                  "example": 30
+                },
+                "last_4_month_freq": {
+                  "type": "number",
+                  "example": 40
+                },
+                "last_5_month_freq": {
+                  "type": "number",
+                  "example": 32
+                },
+                "last_6_month_freq": {
+                  "type": "number",
+                  "example": 67
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/pc380/predict": {
+      "post": {
+        "tags": [
+          "Inferencing"
+        ],
+        "description": "Inferencing for PC380",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "condition_of_item": {
+                  "type": "string",
+                  "example": "good"
+                },
+                "cooperation_with_the_enforcement_officers": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "is_item_recovered": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "is_there_appeal": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "is_under_remand": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "state": {
+                  "type": "string",
+                  "example": "sarawak"
+                },
+                "pd_employment_status": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "pd_nationality": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "use_of_violence": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "previous_conviction_records": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "previous_conviction_same_offence": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "relationship_with_victim": {
+                  "type": "string",
+                  "example": "family members"
+                },
+                "restitution_of_item": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "pd_marital_status": {
+                  "type": "string",
+                  "example": "married"
+                },
+                "sch_accused_found_guilty_after_ft": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "sch_accused_plead_guilty": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "monthly_income_range_group": {
+                  "type": "string",
+                  "example": "B40"
+                },
+                "is_public_interest": {
+                  "type": "string",
+                  "example": "no details available"
+                },
+                "is_there_any_injury": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "pd_gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "number_of_dependants": {
+                  "type": "number",
+                  "example": 1
+                },
+                "pd_age": {
+                  "type": "number",
+                  "example": 32
+                },
+                "value_of_items": {
+                  "type": "number",
+                  "example": 1100.02
+                },
+                "number_of_convictions": {
+                  "type": "string",
+                  "example": "9"
+                },
+                "gap_from_previous_conviction_by_month": {
+                  "type": "string",
+                  "example": "no details available"
+                },
+                "last_1_month_freq": {
+                  "type": "number",
+                  "example": 12
+                },
+                "last_2_month_freq": {
+                  "type": "number",
+                  "example": 3
+                },
+                "last_3_month_freq": {
+                  "type": "number",
+                  "example": 44
+                },
+                "last_4_month_freq": {
+                  "type": "number",
+                  "example": 21
+                },
+                "last_5_month_freq": {
+                  "type": "number",
+                  "example": 10
+                },
+                "last_6_month_freq": {
+                  "type": "number",
+                  "example": 8
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ds/models/pc380/predict-tester": {
+      "post": {
+        "tags": [
+          "Inferencing"
+        ],
+        "description": "Inferencing for PC380 models by their ID",
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "query",
+            "type": "string",
+            "description": "Model ID",
+            "required": true
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "condition_of_item": {
+                  "type": "string",
+                  "example": "good"
+                },
+                "cooperation_with_the_enforcement_officers": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "is_item_recovered": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "is_there_appeal": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "is_under_remand": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "state": {
+                  "type": "string",
+                  "example": "sarawak"
+                },
+                "pd_employment_status": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "pd_nationality": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "use_of_violence": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "previous_conviction_records": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "previous_conviction_same_offence": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "relationship_with_victim": {
+                  "type": "string",
+                  "example": "family members"
+                },
+                "restitution_of_item": {
+                  "type": "string",
+                  "example": "n"
+                },
+                "pd_marital_status": {
+                  "type": "string",
+                  "example": "married"
+                },
+                "sch_accused_found_guilty_after_ft": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "sch_accused_plead_guilty": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "monthly_income_range_group": {
+                  "type": "string",
+                  "example": "B40"
+                },
+                "is_public_interest": {
+                  "type": "string",
+                  "example": "no details available"
+                },
+                "is_there_any_injury": {
+                  "type": "string",
+                  "example": "y"
+                },
+                "pd_gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "number_of_dependants": {
+                  "type": "number",
+                  "example": 1
+                },
+                "pd_age": {
+                  "type": "number",
+                  "example": 32
+                },
+                "value_of_items": {
+                  "type": "number",
+                  "example": 1100.02
+                },
+                "number_of_convictions": {
+                  "type": "string",
+                  "example": "9"
+                },
+                "gap_from_previous_conviction_by_month": {
+                  "type": "string",
+                  "example": "no details available"
+                },
+                "last_1_month_freq": {
+                  "type": "number",
+                  "example": 12
+                },
+                "last_2_month_freq": {
+                  "type": "number",
+                  "example": 3
+                },
+                "last_3_month_freq": {
+                  "type": "number",
+                  "example": 44
+                },
+                "last_4_month_freq": {
+                  "type": "number",
+                  "example": 21
+                },
+                "last_5_month_freq": {
+                  "type": "number",
+                  "example": 10
+                },
+                "last_6_month_freq": {
+                  "type": "number",
+                  "example": 8
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

@@ -1,0 +1,14 @@
+# files
+.env
+.env.local
+.env.dev
+.DS_Store
+.idea
+.vscode
+Thumbs.db
+
+# folders
+node_modules
+logs/*
+config/winston2.js
+result_data_output_from_ai.txt

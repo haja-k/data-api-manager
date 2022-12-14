@@ -1,0 +1,10 @@
+# files
+.DS_Store
+.env
+.idea
+.vscode
+.git
+
+# folders
+logs/
+node_modules
