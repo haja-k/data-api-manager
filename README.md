@@ -1,7 +1,7 @@
 # API Manager  ☄️
 api manager that becomes the medium for frontend to communicate with machine learning (ML) API
 - acts as the database connector, for its ML counterparts to store or retrieve useful data
-- some parts are hidden due to signed NDA. 
+- some parts are hidden due to privacy 
 
 ## Pre-Requisites
 
